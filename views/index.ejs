@@ -1,0 +1,25 @@
+<%- include ("partials/header.ejs") %>
+
+
+
+<section class="container">
+    <div class="dialog-box">
+        <% if ( locals.data){ %>
+            <%if (data.type == "twopart") {%>
+                <div>
+                    <p><%= data.setup %></p>
+                    <p><%= data.delivery %></p>
+                </div>
+            <%} else { %>
+                <div>
+                    <p><%= data.joke %></p>
+                </div>
+            <% } %>
+        <% } else{%>
+            <h2>Welcome to the JOKE MACHINE!</h2>
+        <% }  %>
+    </div>
+
+</section>
+
+<%- include("partials/footer.ejs") %>
