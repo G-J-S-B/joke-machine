@@ -107,3 +107,24 @@ form > button:hover {
 	background-color: #fff;
 	border: solid 1px #252525;
 }
+
+.question-button {
+	font-size: 32px;
+	background-color: #bcc3ec;
+	padding: 15px 20px;
+	border-radius: 12px;
+	transition: 1000ms;
+}
+
+.question-button:hover {
+	box-shadow: 1px 5px 10px #0000005c;
+	cursor: pointer;
+}
+
+.hide {
+	display: none;
+}
+
+.remain-hidden {
+	display: none;
+}

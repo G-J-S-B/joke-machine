@@ -4,11 +4,13 @@
 
 <section class="container">
     <div class="dialog-box">
-        <% if ( locals.data){ %>
+        <% if (locals.data){ %>
             <%if (data.type == "twopart") {%>
                 <div>
                     <p><%= data.setup %></p>
-                    <p><%= data.delivery %></p>
+                    <button id="question-button" class="question-button" onclick="revealAnswer()"> <%= actionButton %></button>
+                    <p id="reveal-answer" class="remain-hidden"><%= data.delivery %></p>
+        
                 </div>
             <%} else { %>
                 <div>

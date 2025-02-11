@@ -27,14 +27,41 @@ app.post('/submit', async (req, res) =>
         const type = req.body.type
         const response = await (axios.get(URL + category + "?type=" + type));
         const data = response.data;
-        console.log(data);
 
-        const question = stringify(data.setup);
-        console.log(question);
+        const twoPartQuestion = data.setup;
+        const lowerTwoPartQuestion = twoPartQuestion.toLowerCase();
 
-        res.render('index.ejs', { data });
-        next();
-    } catch (error)
+        let actionButton = "";
+
+        if (lowerTwoPartQuestion)
+        {
+            if (lowerTwoPartQuestion.includes('why') == true)
+            {
+                actionButton = "Why?";
+            }
+            else if (lowerTwoPartQuestion.includes('who') == true)
+            {
+                actionButton = "Who?";
+            }
+            else if (lowerTwoPartQuestion.includes('what') == true)
+            {
+                actionButton = "What?";
+            }
+            else if (lowerTwoPartQuestion.includes('when') == true)
+            {
+                actionButton = "when?";
+            }
+            else
+            {
+                actionButton = "???";
+            }
+        }
+        else
+        {
+        }
+        res.render('index.ejs', { data, actionButton, category, type });
+    }
+    catch (error)
     {
         console.log(error.data)
     }
