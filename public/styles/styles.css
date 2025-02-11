@@ -128,3 +128,68 @@ form > button:hover {
 .remain-hidden {
 	display: none;
 }
+
+@media screen and (max-width: 768px) {
+	
+	header,
+	footer {
+	height: 150px;
+	}
+
+	nav,
+	footer > p {
+	flex-direction: column;
+	justify-content: space-around;
+	}
+  }
+
+  @media screen and (max-width: 425px) {
+	
+	header,
+	footer {
+	height: auto;
+	}
+
+	footer {
+		height: 80px;
+		text-align: center;
+		}
+
+	nav,
+	footer > p {
+	flex-direction: column;
+	justify-content: space-around;
+	}
+
+	.vertical-seperator{
+		margin: 15px 0px;
+		width: 30px;
+		height: 2px;
+	}
+
+	form {
+		text-align: center;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.dialog-box {
+		text-align: center;
+		padding: 10px;
+	}
+
+	.dialog-box > div > p {
+		font-size: 28px;
+		padding: 15px;
+	}
+
+	label{
+		margin-bottom: 5px;
+	}
+
+	form > button {
+		font-size: 18px;
+		border: #252525 solid 1px;	
+		margin-bottom: 20px;
+	}
+  }
