@@ -12,14 +12,16 @@
                     <p id="reveal-answer" class="remain-hidden"><%= data.delivery %></p>
         
                 </div>
-            <%} else { %>
+            <%} else if (data.type == "single"){ %>
                 <div>
                     <p><%= data.joke %></p>
                 </div>
-            <% } %>
+            <% } else{} %>
         <% } else{%>
-            <h2>Welcome to the JOKE MACHINE!</h2>
-        <% }  %>
+            <h2>Welcome to the JOKE-MACHINE!</h2>
+            <br>
+            <p>Leaving the fields blank will result in a Random Joke.*</p>
+        <% } %>
     </div>
 
 </section>

@@ -5,6 +5,7 @@ import { dirname } from 'path';
 import axios from "axios"
 import ejs from 'ejs';
 import { stringify } from 'querystring';
+import { nextTick } from 'process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -16,8 +17,24 @@ app.use(express.urlencoded());
 
 app.get('/', (req, res) =>
 {
-    res.render('index.ejs', { content: "Hello Content" })
+    res.render('index.ejs')
 });
+
+function setType(x)
+{
+    const type1 = document.getElementById('type-1');
+    const type2 = document.getElementById('type-2');
+
+    if (x == 'single')
+    {
+        type1.setAttribute('active');
+    }
+    else if (x == 'twopart')
+    {
+        type2.setAttribute('active');
+    }
+
+}
 
 app.post('/submit', async (req, res) =>
 {
@@ -28,13 +45,14 @@ app.post('/submit', async (req, res) =>
         const response = await (axios.get(URL + category + "?type=" + type));
         const data = response.data;
 
+        console.log(type)
         const twoPartQuestion = data.setup;
-        const lowerTwoPartQuestion = twoPartQuestion.toLowerCase();
+
 
         let actionButton = "";
-
-        if (lowerTwoPartQuestion)
+        if (twoPartQuestion)
         {
+            const lowerTwoPartQuestion = twoPartQuestion.toLowerCase();
             if (lowerTwoPartQuestion.includes('why') == true)
             {
                 actionButton = "Why?";
@@ -54,18 +72,17 @@ app.post('/submit', async (req, res) =>
             else
             {
                 actionButton = "???";
-            }
+            };
         }
-        else
-        {
-        }
-        res.render('index.ejs', { data, actionButton, category, type });
-    }
-    catch (error)
-    {
-        console.log(error.data)
-    }
 
+        console.log(data)
+        res.render('index.ejs', { data, actionButton, type, category });
+
+    }
+    catch (err)
+    {
+        console.log("error = " + err.message)
+    }
 });
 
 app.listen(port, console.log(`Succesfully connected via = ${port}`));
